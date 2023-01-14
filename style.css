@@ -258,6 +258,16 @@ nav{
     display: grid;
     grid-auto-flow: dense;
     /* margin: 50px 10px; */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.hero__contents__mobile{
+    max-width: 100%;
+    grid-row-gap: 32px;
+    grid-column-gap: 0px;
+    display: grid;
+    grid-auto-flow: dense;
+    /* margin: 50px 10px; */
     margin-top: 50px;
     margin-left: 10px;
     grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
