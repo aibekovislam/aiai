@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: 'Montserrat', sans-serif; */
+    font-family: 'Inter', sans-serif;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1900px) {
+    .mobile{
+        display: none;
+    }
+}
+
+@media (max-width: 1200px) {
+    .container{
+        max-width: 970px;
+    }
+    .mobile{
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .container{
+        max-width: 750px;
+    }
+    .mobile{
+        display: none;
+    }
+}
+
+@media (max-width: 776px) {
+    .container{
+        max-width: none;
+    }
+    .mobile{
+        display: none;
+    }
+}
+
+@media (max-width: 450px){
+    .pc{
+        display: none;
+    }
+    .mobile{
+        display: block;
+    }
+}
+
+
+nav{
+    margin-top: 25px;
+}
+
+.navbar__items{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    width: 100px;
+    height: 58px;
+}
+
+.navbar__blocks{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 300px;
+    column-gap: 20px;
+}
+
+.navbar__blocks__item{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 3px;
+}
+
+.navbar__blocks__item img{
+    width: 33px;
+    height: 33px;
+}
+
+.navbar__blocks__item p{
+    text-align: center;
+}
+
+.hero__item{
+    width: 100%;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.hero__item__title{
+    font-size: 21px;
+    font-weight: 500;
+    /* font-family: 'Montserrat', sans-serif; */
+    font-family: 'Inter', sans-serif;
+}
+
+.hero__contents__block{
+    overflow: hidden; 
+    width: 220px;
+    /* margin-right: 20px; */
+}
+
+.hero__contents__block img{
+    width: 220px; 
+    height: 220px;
+    border-radius: 8px; 
+    object-fit: cover;
+    margin-bottom: 7.5px;
+}
+
+.hero__contents__block p{
+    font-size: 18px;
+    margin-bottom: 7.5px;
+    color: rgb(54, 54, 54);
+}
+
+.hero__contents__block span{
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 24px;
+    height: 24px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.hero__contents{
+    max-width: 100%;
+    grid-row-gap: 32px;
+    grid-column-gap: 16px;
+    display: grid;
+    grid-auto-flow: dense;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+}
+
+.hero__contents__block__img{
+    overflow: hidden;
+}
+
+
+.load__more{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0px 30px 0px;
+}
+
+.load__more button{
+    border: 3px solid #131313;
+    background-color: initial;
+    color: #131313;
+    font-weight: 500;
+    padding: 13px 73px 13px 73px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.footer{
+    margin-top: 50px;
+    background-color: rgba(34,34,34,.12);
+    padding: 73px 0px 73px 0px;
+}
+
+.footer__item__nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__navigation li{
+    list-style-type: none;
+    margin-bottom: 33px;
+}
+
+.footer__navigation::first-line{
+    /* font-family: 'Montserrat', sans-serif; */
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.footer__end__nav{
+    width: 700px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__end{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* Mobile version */
+
+.navbar__mobile__logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 33px;
+}
+
+.mobile__logo{
+    width: 170px;
+    height: auto;
+}
+
+.content__mobile{
+    margin-top: 15px;
+}
+
+.hero__image__mobile{
+    display: flex;
+    justify-content: center;
+}
+
+.hero__nav{
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+.hero__nav__item{
+    border: 3px solid black;
+    padding: 10px 20px 10px 20px;
+    border-radius: 80px;
+    font-weight: 500;
+}
+
+.hero__nav__item__sign{
+    background-color: #DBFF00;
+    border: 3px solid black;
+    padding: 10px 20px 10px 20px;
+    border-radius: 80px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+
+.hero__contents{
+    max-width: 100%;
+    grid-row-gap: 32px;
+    grid-column-gap: 0px;
+    display: grid;
+    grid-auto-flow: dense;
+    /* margin: 50px 10px; */
+    margin-top: 50px;
+    margin-left: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+}
+
+.content__block__img img{
+    width: 180px; 
+    height: 180px;
+    border-radius: 8px; 
+    object-fit: cover;
+    margin-bottom: 7.5px;
+}
+
+.content__block p{
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.content__block span{
+    font-weight: 700;
+    font-size: 20px;
+    display: inline-block;
+}
+
+
+
+.navbar__mobile {
+    background-color: white;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .navbar__mobile a {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Change the color of links on hover */
+  .navbar__mobile a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  /* Add a color to the active/current link */
+  .svg__icons:active {
+    fill: #131313;
+    stroke: #131313;
+  }
+
+  .svg__icons{
+    max-width: 28px;
+    height: 28px;
+  }
+
+.load__more__mobile{
+    margin-bottom: 125px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.load__more__mobile button{
+    border: 3px solid black;
+    border-radius: 8px;
+    font-weight: 500;
+    background-color: initial;
+    padding: 10px 50px 10px 50px;
+}
+
+.footer__mobile{
+    background-color: rgba(34,34,34,.12);
+    padding: 30px 20px 30px 20px;
+}
+
+.footer__mobile__end{
+    margin-bottom: 100px;
+}
+
+.footer__mobile__end p{
+    margin-bottom: 10px;
+}
