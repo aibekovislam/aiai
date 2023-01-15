@@ -407,7 +407,8 @@ nav{
 }
 
 .hero__pages{
-    margin-top: 5px;
+    margin-top: 35px;
+    margin-bottom: 30px;
 }
 
 .back__arrow{
@@ -432,7 +433,7 @@ nav{
 }
 
 .wrapper__title{
-    margin-top: 47px;
+    margin-top: 35px;
 }
 
 .wrapper__left{
@@ -455,7 +456,7 @@ nav{
 }
 
 .zago{
-    font-size: 32px;
+    font-size: 40px;
 }
 
 
@@ -623,4 +624,14 @@ nav{
   /* On smaller screens, decrease text size */
   @media only screen and (max-width: 300px) {
     .prev, .next,.text {font-size: 11px}
+  }
+
+  .wrapper__order h3{
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+
+  .wrapper__order p{
+    line-height: 30px;
+    margin-bottom: 30px;
   }
