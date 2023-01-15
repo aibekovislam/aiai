@@ -113,25 +113,26 @@ nav{
 
 .hero__contents__block{
     overflow: hidden; 
-    width: 220px;
+    width: 280px;
     /* margin-right: 20px; */
 }
 
-.hero__contents__block img{
-    width: 220px; 
-    height: 220px;
+.hero__contents__block__img img{
+    width: 280px; 
+    height: 280px;  
     border-radius: 8px; 
     object-fit: cover;
     margin-bottom: 7.5px;
 }
 
 .hero__contents__block p{
-    font-size: 18px;
+    font-size: 14px;
     margin-bottom: 7.5px;
     color: rgb(54, 54, 54);
 }
 
 .hero__contents__block span{
+    margin-bottom: 7.5px;
     font-size: 21px;
     font-weight: 700;
     line-height: 24px;
@@ -145,12 +146,36 @@ nav{
     grid-column-gap: 16px;
     display: grid;
     grid-auto-flow: dense;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 
 }
 
-.hero__contents__block__img{
+/* .hero__contents__block__img{
     overflow: hidden;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.hero__contents__block__img:hover{
+    opacity: 0.7;
+} */
+
+
+.hero__contents__block__img{
+    background-color: #000;
+    border-radius: 8px;
+    height: 280px;
+    transition-duration: 0.3s;
+    margin-bottom: 10px;
+}
+
+.hero__contents__block__img img{
+    transition-duration: 0.3s;
+}
+
+.hero__contents__block__img:hover img{
+    opacity: 0.9;
+    cursor: pointer;
 }
 
 
@@ -212,7 +237,7 @@ nav{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 33px;
+    padding-top: 13px;
 }
 
 .mobile__logo{
@@ -323,7 +348,7 @@ nav{
   }
 
 .load__more__mobile{
-    margin-bottom: 125px;
+    margin-bottom: 35px;
     margin-top: 25px;
     display: flex;
     justify-content: center;
@@ -348,4 +373,34 @@ nav{
 
 .footer__mobile__end p{
     margin-bottom: 10px;
+}
+
+
+.hero__contents__block button{
+    margin-top: 13px;
+    font-weight: 700;
+    border: 3px solid black;
+    /* background-color: #cc290a; */
+    background-color: initial;
+    border-radius: 3px;
+    color: black;
+    padding: 10px 30px 10px 30px;
+    cursor: pointer;
+}
+
+.hero__contents__block button:hover{
+    border: 3px solid rgb(55, 55, 55);
+    color: rgb(55, 55, 55);
+}
+
+.content__block button{
+    margin-top: 13px;
+    font-weight: 700;
+    border: 3px solid black;
+    /* background-color: #cc290a; */
+    background-color: initial;
+    border-radius: 80px;
+    color: black;
+    padding: 10px 20px 10px 20px;
+    cursor: pointer;
 }
