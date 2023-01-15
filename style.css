@@ -58,6 +58,8 @@
 }
 
 
+
+
 nav{
     margin-top: 25px;
 }
@@ -284,7 +286,7 @@ nav{
     /* margin: 50px 10px; */
     margin-top: 50px;
     margin-left: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 .content__block__img img{
@@ -335,12 +337,7 @@ nav{
     background-color: #ddd;
     color: black;
   }
-  
-  /* Add a color to the active/current link */
-  .svg__icons:active {
-    fill: #131313;
-    stroke: #131313;
-  }
+
 
   .svg__icons{
     max-width: 28px;
@@ -404,3 +401,7 @@ nav{
     padding: 10px 20px 10px 20px;
     cursor: pointer;
 }
+
+
+
+
