@@ -277,8 +277,8 @@ nav{
 }
 
 .hero__nav__item__sign{
-    background-color: #DBFF00;
-    border: 3px solid black;
+    background-color: #FE700B;
+    border: 3px solid #FE700B;
     padding: 10px 20px 10px 20px;
     border-radius: 80px;
     font-weight: 500;
@@ -405,11 +405,11 @@ nav{
 .content__block button{
     margin-top: 13px;
     font-weight: 700;
-    border: 3px solid black;
-    /* background-color: #cc290a; */
+    border: 3px solid #FE700B;
+    /* background-color: #FE700B; */
     background-color: initial;
-    border-radius: 80px;
-    color: black;
+    border-radius: 8px;
+    color: white;
     padding: 10px 20px 10px 20px;
     cursor: pointer;
 }
@@ -555,6 +555,7 @@ nav{
     display: flex;
     align-items: center;
     margin-top: 23px;
+    justify-content: space-between;
   }
 
   .navbar__mobile__page__prev{
@@ -677,6 +678,14 @@ nav{
     text-decoration: none;
     color: #000;
   }
+  .back2{
+    text-decoration: none;
+    color: white;
+  }
+  .back3{
+    text-decoration: none;
+    color: #FE700B;
+  }
 
   .login__hero__mobile{
     margin: 100px 23px;
@@ -746,4 +755,11 @@ nav{
     border-radius: 8px;
     font-size: 17px;
     font-weight: 500;
+  }
+
+  .nav__back{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 3px;
   }
