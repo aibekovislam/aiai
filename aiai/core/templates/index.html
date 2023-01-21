@@ -1,0 +1,225 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aiai</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}?{% now "U" %}">
+</head>
+<body>
+    <div class="mobile">
+        <div class="nav__mobile">
+            <div class="navbar__mobile__logo">
+                <img src="{% static 'svg/logo.svg' %}" alt="" class="mobile__logo">
+            </div>
+        </div>
+        <div class="content__mobile">
+            <div class="hero__image__mobile">
+                <img src="{% static 'images/Frame 1 (12).png' %}" alt="">
+            </div>
+            <div class="hero__nav">
+                <span class="hero__nav__item">
+                    Рекомендуем вам
+                </span>
+                <span class="hero__nav__item__sign">
+                    <a href="./user.html" class="back2">Войти</a>    
+                </span>
+            </div>
+            <div class="hero__contents__mobile">
+                {% for product in products %}
+                <div class="content__block">
+                    <div class="content__block__img">
+                        <a href="{% url 'product' product.id %}"><img {% if product.picture %} src="{{ product.picture.url }}" {% endif %} alt="img"></a>
+                    </div>
+                    <p>{{ product.title }}</p>
+                    <span>{{ product.price }} сом / </span>
+                    <span class="count">1 шт.</span>
+                    <button><a href="{% url 'product' product.id %}" class="back3">Подробнее</a></button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="load__more__mobile">
+            <button>Показать ещё</button>
+        </div>
+
+        <div class="navbar__mobile">
+            <div class="navbar__mobile__item">
+                <a href="#home" class="active"><img src="{% static 'svg/icons8-home.svg' %}" alt="" class="svg__icons"><p>Home</p></a>
+            </div>
+            <div class="navbar__mobile__item">
+                <a href="#news"><img src="{% static 'svg/basket-svgrepo-com.svg' %}" class="svg__icons"><p>Корзина</p></a>
+            </div>
+            <div class="navbar__mobile__item">
+                <a href="#contact"><img src="{% static 'svg/cube-box-svgrepo-com.svg' %}" alt="" class="svg__icons"><p>Заказы</p></a>
+            </div>
+        </div>
+        <footer class="footer__mobile">
+                <div class="footer__mobile__items">
+                    <div class="footer__mobile__item__nav">
+                        <div class="footer__mobile__item">
+                            <ul class="footer__navigation">
+                                <li>Покупателям</li>
+                                <li>Заказы и оплаты</li>
+                                <li>Доставка</li>
+                                <li>Поддержка</li>
+                            </ul>
+                        </div>
+                        <div class="footer__mobile__item">
+                            <ul class="footer__navigation">
+                                <li>Партнерам</li>
+                                <li>Продавайте на aiai</li>
+                                <li>Войти</li>
+                                <li>Поддержка</li>
+                            </ul>
+                        </div>
+                        <div class="footer__mobile__item">
+                            <ul class="footer__navigation">
+                                <li>О компании</li>
+                                <li>Вакансии</li>
+                                <li>Войти</li>
+                                <li>Поддержка</li>
+                            </ul>
+                        </div>
+                        <div class="footer__mobile__item">
+                            <ul class="footer__navigation">
+                                <li>Мы в соцсетях</li>
+                                <li>Инстаграм</li>
+                                <li>Youtube</li>
+                                <li>Telegram</li>
+                                <li>Whatsapp</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer__mobile__end">
+                        <p>Политика и кондефициальность</p>
+                        <p>2023 © aiai Кыргызстан</p>
+                    </div>
+                    <!-- <div class="footer__end__mobile">
+                        <div class="footer__end__nav">
+                            <p>Политика и кондефициальность</p>
+                        </div>
+                        <div class="footer__end__found">
+                            <p>2023 © aiai Кыргызстан</p>
+                        </div>
+                    </div> -->
+                </div>
+        </footer>
+    </div>
+    <div class="pc">
+        <div class="container__mine">
+            <nav>
+                <div class="container__mine">
+                    <div class="navbar__items">
+                        <div class="navbar__logo">
+                            <img src="{% static 'svg/logo.svg' %}" alt="logo" class="logo">
+                        </div>
+                        <div class="navbar__blocks">
+                            <div class="navbar__blocks__item">
+                                <a href="./user.html" class="back nav__back">
+                                    <img src="{% static 'svg/user-svgrepo-com.svg' %}" alt="" class="svg-fluid">
+                                    <p>Войти</p>
+                                </a>
+                            </div>
+                            <div class="navbar__blocks__item">
+                                <a href="#" class="back nav__back">
+                                    <img src="{% static 'svg/cube-box-svgrepo-com.svg' %}" alt="">
+                                    <p>Заказы</p>
+                                </a>
+                            </div>
+                            <div class="navbar__blocks__item">
+                                <a href="#" class="back nav__back">
+                                    <img src="{% static 'svg/basket-svgrepo-com.svg' %}" alt="">
+                                    <p>Корзина</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <section class="hero">
+            <div class="container__mine">
+                <div class="hero__item">
+                    <img src="{% static 'images/Frame 1 (1).png' %}" alt="">
+                </div>
+                <div class="hero__item">
+                    <span class="hero__item__title">Товары на продаже</span>
+                </div>
+                <div class="hero__item">
+                    <div class="hero__contents">
+                        {% for product in products %}
+                        <div class="hero__contents__block">
+                            <div class="hero__contents__block__img">
+                                <a href="{% url 'product' product.id %}"><img {% if product.picture %} src="{{ product.picture.url }}" {% endif %} alt="img"></a>
+                                <span class="img__mask"><i class="img__icon"></i></span>
+                            </div>
+                            <p>{{ product.title }}</p>
+                            <span>{{ product.price }} сом / </span>
+                            <span class="count">1 шт.</span>
+                            <a href="{% url 'product' product.id %}"><button>Подробнее</button></a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="load__more">
+                        <button>Показать ещё</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="container__mine">
+                <div class="footer__items">
+                    <div class="footer__item__nav">
+                        <div class="footer__item">
+                            <ul class="footer__navigation">
+                                <li>Покупателям</li>
+                                <li>Заказы и оплаты</li>
+                                <li>Доставка</li>
+                                <li>Поддержка</li>
+                            </ul>
+                        </div>
+                        <div class="footer__item">
+                            <ul class="footer__navigation">
+                                <li>Партнерам</li>
+                                <li>Продавайте на aiai</li>
+                                <li>Войти</li>
+                                <li>Поддержка</li>
+                            </ul>
+                        </div>
+                        <div class="footer__item">
+                            <ul class="footer__navigation">
+                                <li>О компании</li>
+                                <li>Вакансии</li>
+                                <li>Войти</li>
+                                <li>Поддержка</li>
+                            </ul>
+                        </div>
+                        <div class="footer__item">
+                            <ul class="footer__navigation">
+                                <li>Мы в соцсетях</li>
+                                <li>Инстаграм</li>
+                                <li>Youtube</li>
+                                <li>Telegram</li>
+                                <li>Whatsapp</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer__end">
+                        <div class="footer__end__nav">
+                            <p>Политика и кондефициальность</p>
+                            <p>Карта сайта</p>
+                            <p>Пользовательское соглашение</p>
+                        </div>
+                        <div class="footer__end__found">
+                            <p>2023 © aiai Кыргызстан</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
