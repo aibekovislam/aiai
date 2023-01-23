@@ -27,10 +27,10 @@ def products(request):
 def products_page(request, id):
     product = get_object_or_404(Products, id=id)
     products = Products.objects.all()
-    colors = ColorK.objects.all();
+    colors = ColorK.objects.all()
     context = {
         "product": product,
         "products": products,
-        "colors": colors
+        "colors": colors,
     }
     return render(request, "page.html", context=context)

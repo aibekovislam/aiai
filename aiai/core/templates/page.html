@@ -8,6 +8,9 @@
     <title>aiai</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="pc">
@@ -40,7 +43,7 @@
             <div class="container__mine">
                 <div class="back__arrow">
                     <a href="./index.html"><img src="{% static 'svg/arrow-thin-left-icon.svg' %}" alt="arrow" class="svg__icons"></a>
-                    <p><a href="{% url 'main' %}">Назад в магазин</a></p>
+                    <p class="arrow__paragraph"><a href="{% url 'main' %}">Назад в магазин</a></p>
                 </div>
                 <div class="wrapper__title">
                     <h1 class="heading__mine">{{ product.title }}</h1>
@@ -48,30 +51,74 @@
                 <div class="wrapper">
                     <div class="wrapper__left">
                         <div class="wrapper__left__items">
-                          <img {% if product.picture %} src="{{ product.picture.url }}" {% endif %}>
+                          {% comment %} <div id="none"><img {% if product.picture %} src="{{ product.picture.url }}" {% endif %}></div>
+                          {% if not product.picture %}
+                            {% for v in product.colors.all %}
+                                <img src="{{ v.picture.url }}">
+                            {% endfor %}
+                          {% endif %} {% endcomment %}
+
+                          <div id="carouselExample" class="carousel slide">
+                            <div class="carousel-indicators">
+                                {% for c in product.colors.all %}
+                                    {% if forloop.first %}
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop.counter0}}" id="dis_{{forloop.counter}}" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    {% else %}
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" id="dis_{{forloop.counter}}" data-bs-slide-to="{{forloop.counter0}}" aria-label="Slide {{forloop.counter}}"></button>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <div class="carousel-inner">
+                            {% for v in product.colors.all %}
+                            {% if forloop.first %}
+                              <div class="carousel-item active">
+                                <img src="{{ v.picture.url }}" class="d-block w-100" alt="...">
+                              </div>
+                            {% else %}
+                                <div class="carousel-item">
+                                    <img src="{{ v.picture.url }}" class="d-block w-100" alt="...">
+                                </div>
+                            {% endif %}
+                            {% endfor %}
+                            </div>
+                            
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                              <span class="carousel-control-prev-icon" id="prev_carousel" aria-hidden="true"></span>
+                              <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                              <span class="carousel-control-next-icon" id="next_carousel" aria-hidden="true"></span>
+                              <span class="visually-hidden">Next</span>
+                            </button>
+                          </div>
+
                         </div>
                     </div>
                     <div class="wrapper__right">
                         <div class="wrapper__items">
-                            <div class="wrapper__colors">
-                                <span>Цвета: {{ product.color }}</span>
-                            </div>
-                            <div class="colors__main">
+                            {% comment %} <div class="colors__main">
                                 {% for c in product.colors.all %}
                                     <div class="colors__main__item">
-                                        <div class="colors">
-                                                <img src="{{ c.picture.url }}">
+                                        <div class="colors {% if forloop.counter0 == 0 %}active{% endif %}">
+                                            <img src="{{ c.picture.url }}" class="c_img">
                                         </div>
                                     </div>
                                 {% endfor %}
+                            </div> {% endcomment %}
+                            <div class="wrapper__info">
+                                <h3 class="about__product">О товаре:</h3>
+                                <div class="wrapper__colors">
+                                    <span class="colors">Цвета: <b>{{ product.color }}</b></span>
+                                </div>
+                                <div class="tekstil">Материал: <b>{{product.tekstil}}</b></div>
                             </div>
                             <div class="wrapper__price">
-                                <p>700 сом / 1 шт.</p>
+                                <p>{{product.discount}} сом / 1 шт.</p>
                                 <div class="main__price">{{ product.price }} сом / 1 шт.</div>
                                 <div class="line__price">{{ product.price|add:product.price|add:product.price|add:product.price }} сом / 4 шт. (линейка)</div>
                             </div>
                             <div class="wrapper__buttons">
-                                <button class="button__busket">В корзину</button>
+                                <button data-product={{product.id}} data-action="add" class="button__busket update-cart">В корзину</button>
                                 <button class="button__buy">Купить</button>
                             </div>
                             <div class="wrapper__order">
@@ -88,40 +135,111 @@
     <div class="mobile">
         <div class="navbar__mobile__page">
             <div class="navbar__mobile__page__prev">
-                <img src="./images/arrow-thin-left-icon.svg" alt="arrow" class="svg__icons">
-                <span><a href="./index.html" class="back">Назад в магазин</a></span>
+                <img src="{% static 'svg/arrow-thin-left-icon.svg' %}" alt="arrow" class="svg__icons">
+                <span><a href="{% url 'main' %}" class="back">Назад в магазин</a></span>
             </div>
             <div class="navbar__mobile__page__logo">
-              <a href="./index.html"><img src="./images/logo.svg" alt="logo" class="logo" style="margin-right: 3px;"></a>
+              <a href="{% url 'main' %}"><img src="{% static 'svg/logo.svg' %}" alt="logo" class="logo" style="margin-right: 3px;"></a>
             </div>
         </div>
         <div class="hero__mobile__page__1">
             <div class="hero__mobile__page__block">
                 <div class="hero__mobile__page__items">
                     <div class="hero__mobile__page__item">
-                        
+                        <div id="carouselExample" class="carousel slide">
+                            <div class="carousel-indicators">
+                                {% for c in product.colors.all %}
+                                    {% if forloop.first %}
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{forloop.counter0}}" id="dis_{{forloop.counter}}" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    {% else %}
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" id="dis_{{forloop.counter}}" data-bs-slide-to="{{forloop.counter0}}" aria-label="Slide {{forloop.counter}}"></button>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <div class="carousel-inner">
+                            {% for v in product.colors.all %}
+                            {% if forloop.first %}
+                              <div class="carousel-item active">
+                                <img src="{{ v.picture.url }}" class="d-block w-100" alt="...">
+                              </div>
+                            {% else %}
+                                <div class="carousel-item">
+                                    <img src="{{ v.picture.url }}" class="d-block w-100" alt="...">
+                                </div>
+                            {% endif %}
+                            {% endfor %}
+                            </div>
+                            
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                              <span class="carousel-control-prev-icon" id="prev_carousel" aria-hidden="true"></span>
+                              <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                              <span class="carousel-control-next-icon" id="next_carousel" aria-hidden="true"></span>
+                              <span class="visually-hidden">Next</span>
+                            </button>
+                          </div>
                     </div>
+                    
                 </div>
             </div>
             <div class="hero__mobile__page__1__item">
                 <div class="hero__mobile__page__info">
-                    <p class="hero__mobile__title__1">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-                    <span class="price">650 сом / 1 шт.</span>
-                    <span class="price__discount">700 сом</span>
-                    <div class="main__price__mobile">2600 сом / 4 шт.</div>
+                    <p class="hero__mobile__title__1">{{product.title}}</p>
+                    <span class="price">{{product.price}} сом / 1 шт.</span>
+                    <span class="price__discount">{{product.discount}} сом</span>
+                    <div class="main__price__mobile">{{ product.price|add:product.price|add:product.price|add:product.price }} сом / 4 шт.</div>
                     <div class="info">
                       <p class="info__item">О товаре: </p>
-                      <p class="info__item__jun">Материал - <b>Дубайский шёлк</b></p>
-                      <p class="info__item__jun">Цвета - <b>Электрик, Кофе, Джинса</b></p>
+                      <p class="info__item__jun">Материал - <b>{{product.tekstil}}</b></p>
+                      <p class="info__item__jun">Цвета - <b>{{product.color}}</b></p>
                     </div>
                     <div class="info__button">
                       <button class="buy">Купить</button>
-                      <button class="basket">В корзину</button>
+                      <button data-product={{product.id}} data-action="add" class="basket update-cart">В корзину</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    {% comment %} <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> {% endcomment %}
+
+    <script src="{% static 'js/cart.js' %}"></script>
+
+    <script>
+        {% comment %} $(document).ready(function(){
+  
+            $(".carousel").carousel({
+              interval: false,
+              pause: true
+            });
+            
+            $( ".carousel .carousel-inner" ).swipe( {
+              swipeLeft: function ( event, direction, distance, duration, fingerCount ) {
+                this.parent( ).carousel( 'next' );
+              },
+              swipeRight: function ( ) {
+                this.parent( ).carousel( 'prev' );
+              },
+              threshold: 0,
+              tap: function(event, target) {
+                window.location = $(this).find('.carousel-item.active a').attr('href');
+              },
+              
+              excludedElements:"label, button, input, select, textarea, .noSwipe"
+            } );
+            
+            $('.carousel .carousel-inner').on('dragstart', 'a', function () {
+              return false;
+            });  
+            
+          }); {% endcomment %}
+    </script> 
+
+    <!-- end Scripts -->
+
 </body>
 </html>
