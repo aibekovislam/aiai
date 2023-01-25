@@ -1,14 +1,27 @@
 from django.db import models
 from django.db.models import F
-# from django.contrib.auth.models import User
-from django.forms import BooleanField, CharField, ImageField
-# from django.utils.translation import gettext_lazy as _
-from django.shortcuts import reverse
+from django.contrib.auth.models import User
 
+
+class CodeP(models.Model):
+    code = models.CharField(max_length=7, blank=True, null=True)
+
+    def __str__(self):
+        return self.code
+    
+
+class Customer(models.Model):
+    username = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+    name = models.CharField(max_length=133, verbose_name='Имя заказсчика')
+    # phone_code = models.ForeignKey(CodeP, on_delete=models.CASCADE, null=True, blank=True)
+    phone_code = models.CharField(max_length=10, null=True, blank=True)
+    phone_number = models.CharField(max_length=150, blank=True)
+
+    def __str__(self):
+        return str(self.name)
 
 class ColorK(models.Model):
-    picture = models.FileField(upload_to="product__image", blank=True, verbose_name="Картинка цветов", db_index=True)
-    # products = models.ForeignKey(Products, on_delete=models.CASCADE, null=True, blank=True)
+    picture = models.ImageField(upload_to="product__image", blank=True, verbose_name="Картинка цветов", db_index=True)
 
     def __str__(self):
         return str(self.picture)
@@ -21,13 +34,10 @@ class Products(models.Model):
     fixed__price__i = 4
     colors = models.ManyToManyField(ColorK, related_name='colors')
     discount = models.IntegerField(null=True)
-    # slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL", null=True, blank=True)
     created_at = models.DateTimeField(
         auto_now_add=True,
         null=True,
     )
-
-    # metades = models.TextField(null=True, blank=True, verbose_name=_("Ключевые слова"))
 
     picture = models.FileField(
         upload_to="product_image",

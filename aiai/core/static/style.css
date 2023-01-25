@@ -15,6 +15,7 @@
     margin: 0 auto;
 }
 
+
 input{
     outline: none;
 }
@@ -779,6 +780,7 @@ nav{
     border-radius: 8px;
     font-size: 17px;
     font-weight: 500;
+    margin-top: 23px;
   }
 
   .nav__back{
@@ -883,4 +885,63 @@ nav{
 
 .tekstil{
     font-size: 23px;
+}
+
+
+
+
+
+.select-box {
+    display: flex;
+    width: 95px;
+    height: 47px;
+    flex-direction: column;
+  }
+
+
+  .login_form{
+    border: none;
+    margin-top: 23px;
+    width: 100%;
+    height: 47px;
+    border: 1px solid #d5d5d5;
+    border-radius: 8px;
+    padding-left: 10px;
+    transition-duration: 0.3s;    
+  }
+
+
+  .login_form:focus{
+    border: 3px solid rgb(254, 112, 11);
+  }
+
+
+  .pwd_form{
+    border: none;
+    margin-top: 23px;
+    width: 100%;
+    height: 47px;
+    border: 1px solid #d5d5d5;
+    border-radius: 8px;
+    padding-left: 10px;
+    transition-duration: 0.3s;    
+  }
+
+
+  .pwd_form:focus{
+    border: 3px solid rgb(254, 112, 11);
+  }
+
+.registration{
+    width: 100%;
+    height: 47px;
+    background-color: initial;
+    border: 3px solid #FE700B;
+    border-radius: 8px;
+    margin-top: 23px;
+}
+
+.registration a{
+    text-decoration: none;
+    color: #FE700B;
 }

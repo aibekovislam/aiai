@@ -10,5 +10,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.products, name='main'),
     path('product/<int:id>/', products_page, name="product"),
+    path('sign-in/', sign_in, name='sign-in'),
+    path('sign-out/', sign_out, name='sign-out'),
+    path('create-acc/', registration, name='registration'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
   + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

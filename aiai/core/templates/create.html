@@ -26,13 +26,13 @@
                     <a href="{% url 'main' %}"><img src="{% static 'svg/logo.svg' %}" alt=""></a>
                 </div>
                 <div class="login__mobile">
-                    <h2 class="login__mobile__title">Войти или создать аккаунт</h2>
+                    <h2 class="login__mobile__title">Создать аккаунт</h2>
                 </div>
                     <form method="POST">
                     {% csrf_token %}
                         <div class="login__mobile">
                             <div class="phone__code">
-                                <select class="country__prefix">
+                                <select class="country__prefix" name="phone_code" id="phone__code">
                                     {% for k in codep %}
                                         <option>{{k.code}}</option>
                                     {% endfor %}
@@ -40,11 +40,15 @@
                             </div>
                             <input type="tel" class="phone__number" placeholder="Ваш телефон" id="phone_number" name="phone_number" required>
                         </div>
-                        <input type="text" class="login_form" placeholder="Ваше имя" id="username" name="username" required>
-                        <input type="password" class="pwd_form" placeholder="Пароль" id="pwd" name="password" required>
-                        <button type="submit" class="button__mobile">Войти</button>
-                        <button type="submit" class="registration"><a href="{% url 'registration' %}">Зарегистрироваться</a></button>
+                        <input type="text" class="login_form" placeholder="Ваше имя" id="name" name="name" required>
+                        <input type="text" class="login_form" placeholder="Ваше Фамилия" id="username" name="username" required>
+                        <input type="password" class="pwd_form" placeholder="Пароль" id="pwd" name="password">
+                        <button type="submit" class="button__mobile">Зарегистрироваться</button>
+                        <button type="submit" class="registration"><a href="{% url 'sign-in' %}">Войти</a></button>
                     </form>
+                    {% if message %}
+                        <span>{{ message }}</span>
+                    {% endif %}
             </div>
         </div>
     </div>

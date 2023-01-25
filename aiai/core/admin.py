@@ -22,3 +22,5 @@ from .models import *
 # admin.site.register(Products, ProductAdmin)
 admin.site.register(Products)
 admin.site.register(ColorK)
+admin.site.register(Customer)
+admin.site.register(CodeP)

@@ -24,7 +24,8 @@
                     Рекомендуем вам
                 </span>
                 <span class="hero__nav__item__sign">
-                    <a href="./user.html" class="back2">Войти</a>    
+                    {% if not request.user.is_authenticated %}<a href="{% url 'sign-in' %}" class="back2">Войти</a>{% endif %}
+                    {% if request.user.is_authenticated %}<a href="{% url 'sign-out' %}" class="back2">Выйти</a>{% endif %}   
                 </span>
             </div>
             <div class="hero__contents__mobile">
@@ -118,7 +119,7 @@
                         </div>
                         <div class="navbar__blocks">
                             <div class="navbar__blocks__item">
-                                <a href="./user.html" class="back nav__back">
+                                <a href="{% url 'sign-in' %}" class="back nav__back">
                                     <img src="{% static 'svg/user-svgrepo-com.svg' %}" alt="" class="svg-fluid">
                                     <p>Войти</p>
                                 </a>
