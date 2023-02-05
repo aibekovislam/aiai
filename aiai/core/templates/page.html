@@ -118,8 +118,7 @@
                                 <div class="line__price">{{ product.price|add:product.price|add:product.price|add:product.price }} сом / 4 шт. (линейка)</div>
                             </div>
                             <div class="wrapper__buttons">
-                                <button data-product={{product.id}} data-action="add" class="button__busket update-cart">В корзину</button>
-                                <button class="button__buy">Купить</button>
+                                <a href="{% url 'orders' product.id %}"><button class="button__buy">Купить</button></a>
                             </div>
                             <div class="wrapper__order">
                                 <h3>Доставка</h3>
@@ -195,8 +194,7 @@
                       <p class="info__item__jun">Цвета - <b>{{product.color}}</b></p>
                     </div>
                     <div class="info__button">
-                      <button class="buy">Купить</button>
-                      <button data-product={{product.id}} data-action="add" class="basket update-cart">В корзину</button>
+                      <a href="{% url 'orders' product.id %}"><button class="buy">Купить</button></a>
                     </div>
                 </div>
             </div>

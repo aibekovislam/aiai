@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aiai</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body class="gray">
+    <div class="pc">
+        <div class="navbar__cart">
+            <div class="container__mine">
+                <div class="navbar__cart__logo">
+                    <img src="{% static 'svg/logo.svg' %}" class="cart__logo">
+                    <span class="navbar__cart__title">В процессе</span>
+                </div>
+            </div>
+        </div>
+        <div class="container__mine">
+            <div class="center__block">
+                <div class="center__message">Ваш заказ оформлен, <span>ожидайте звонка.</span><br>Спасибо за то что выбрали нас!</div>
+            </div>
+            <a href="{% url 'main' %}">Вернуться в магазин</a>
+        </div>
+    </div>
+    <div class="mobile">
+        <div class="navbar__cart">
+            <div class="container__mine">
+                <div class="navbar__cart__logo">
+                    <a href="{% url 'main' %}"><img src="{% static 'svg/logo.svg' %}" class="cart__logo"></a>
+                    <span class="navbar__cart__title">В процессе</span>
+                </div>
+            </div>
+        </div>
+        <div class="d-fl">
+            <div class="center__message__mobile">Ваш заказ оформлен, <span>ожидайте звонка.</span><br>Спасибо за то что выбрали нас!</div>
+            <div class="back-button"><a href="{% url 'main' %}">Вернуться в магазин</a></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+    <script src="{% static 'js/cart.js' %}"></script>
+
+    <script>
+        $('form').eq(0).on("change", function(e){ 
+            $('input[name^=field]').each(function()
+            { 
+              if(e.target != this)
+                this.checked = false; 
+            });
+        })
+        
+        $('form').eq(0).on('submit', function() {
+             return $('input[name^=field]:checked:enabled').length == 1;
+        });
+
+        const input = document.getElementById('counter');
+        const log = document.querySelector('input[name="total"]')
+        log.value = '0 сом'
+        let res;
+        const price = document.getElementById('price').value;
+        input.addEventListener('change', function() {
+            let t = Number(input.value);
+            res = price * t
+            log.value = res + ' сом';
+        });
+
+    </script>
+
+    <!-- end Scripts -->
+
+</body>
+</html>

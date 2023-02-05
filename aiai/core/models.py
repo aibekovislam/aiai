@@ -21,10 +21,11 @@ class Customer(models.Model):
         return str(self.name)
 
 class ColorK(models.Model):
+    name = models.CharField(max_length=255, verbose_name="Название", null=True)
     picture = models.ImageField(upload_to="product__image", blank=True, verbose_name="Картинка цветов", db_index=True)
 
     def __str__(self):
-        return str(self.picture)
+        return str(self.name)
 
 class Products(models.Model):
     title = models.CharField(max_length=255, null=True, blank=True)
@@ -47,3 +48,19 @@ class Products(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Order(models.Model):
+    name = models.CharField(max_length=255, null=True)
+    phoneNumber = models.CharField(max_length=255, null=True)
+    phoneCode = models.CharField(max_length=255, null=True)
+    # address = models.CharField(max_length=255, null=True)
+    cityAddress = models.CharField(max_length=255, null=True)
+    # quantity = models.CharField(max_length=150, null=True)
+    productChoosed = models.CharField(max_length=255, null=True)
+    # colors = models.CharField(max_length=355, null=True)
+    # total = models.CharField(max_length=255, null=True)
+    colorsValue = models.CharField(max_length=255, null=True, verbose_name="Расцветки")
+    cashMethod = models.CharField(max_length=255, null=True, blank=True, verbose_name="Наличные")
+    bankCartMethod = models.CharField(max_length=255, null=True, blank=True, verbose_name="Банковская карта")
+    mbank = models.CharField(max_length=255, null=True, blank=True, verbose_name="МБанк")

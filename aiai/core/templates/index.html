@@ -23,10 +23,10 @@
                 <span class="hero__nav__item">
                     Рекомендуем вам
                 </span>
-                <span class="hero__nav__item__sign">
+                {% comment %} <span class="hero__nav__item__sign">
                     {% if not request.user.is_authenticated %}<a href="{% url 'sign-in' %}" class="back2">Войти</a>{% endif %}
                     {% if request.user.is_authenticated %}<a href="{% url 'sign-out' %}" class="back2">Выйти</a>{% endif %}   
-                </span>
+                </span> {% endcomment %}
             </div>
             <div class="hero__contents__mobile">
                 {% for product in products %}
@@ -42,11 +42,38 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="load__more__mobile">
-            <button>Показать ещё</button>
-        </div>
 
-        <div class="navbar__mobile">
+                <div class="button-wrapper">
+                  <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                     <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                    {% endif %}
+                      {% for i in paginator.page_range %}
+                        <li class="page-item {% if i == page_number %}active{% endif %}">
+                          {% if i >= page_obj.number|add:-4 and i <= page_obj.number|add:4  %}
+                            <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                          </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                      <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    {% endif %}
+                  </ul>
+              </div>
+              </div>
+        {% comment %} <div class="load__more__mobile">
+            <button>Показать ещё</button>
+        </div> {% endcomment %}
+
+        {% comment %} <div class="navbar__mobile">
             <div class="navbar__mobile__item">
                 <a href="#home" class="active"><img src="{% static 'svg/icons8-home.svg' %}" alt="" class="svg__icons"><p>Home</p></a>
             </div>
@@ -56,59 +83,9 @@
             <div class="navbar__mobile__item">
                 <a href="#contact"><img src="{% static 'svg/cube-box-svgrepo-com.svg' %}" alt="" class="svg__icons"><p>Заказы</p></a>
             </div>
-        </div>
-        <footer class="footer__mobile">
-                <div class="footer__mobile__items">
-                    <div class="footer__mobile__item__nav">
-                        <div class="footer__mobile__item">
-                            <ul class="footer__navigation">
-                                <li>Покупателям</li>
-                                <li>Заказы и оплаты</li>
-                                <li>Доставка</li>
-                                <li>Поддержка</li>
-                            </ul>
-                        </div>
-                        <div class="footer__mobile__item">
-                            <ul class="footer__navigation">
-                                <li>Партнерам</li>
-                                <li>Продавайте на aiai</li>
-                                <li>Войти</li>
-                                <li>Поддержка</li>
-                            </ul>
-                        </div>
-                        <div class="footer__mobile__item">
-                            <ul class="footer__navigation">
-                                <li>О компании</li>
-                                <li>Вакансии</li>
-                                <li>Войти</li>
-                                <li>Поддержка</li>
-                            </ul>
-                        </div>
-                        <div class="footer__mobile__item">
-                            <ul class="footer__navigation">
-                                <li>Мы в соцсетях</li>
-                                <li>Инстаграм</li>
-                                <li>Youtube</li>
-                                <li>Telegram</li>
-                                <li>Whatsapp</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="footer__mobile__end">
-                        <p>Политика и кондефициальность</p>
-                        <p>2023 © aiai Кыргызстан</p>
-                    </div>
-                    <!-- <div class="footer__end__mobile">
-                        <div class="footer__end__nav">
-                            <p>Политика и кондефициальность</p>
-                        </div>
-                        <div class="footer__end__found">
-                            <p>2023 © aiai Кыргызстан</p>
-                        </div>
-                    </div> -->
-                </div>
-        </footer>
+        </div> {% endcomment %}
     </div>
+</div>
     <div class="pc">
         <div class="container__mine">
             <nav>
@@ -164,9 +141,33 @@
                         </div>
                         {% endfor %}
                     </div>
-                    <div class="load__more">
+                    {% comment %} <div class="load__more">
                         <button>Показать ещё</button>
-                    </div>
+                    </div> {% endcomment %}
+                    <div class="button-wrapper">
+                        <ul class="pagination">
+                          {% if page_obj.has_previous %}
+                           <li class="page-item">
+                              <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                              </a>
+                            </li>
+                          {% endif %}
+                            {% for i in paginator.page_range %}
+                              <li class="page-item {% if i == page_number %}active{% endif %}">
+                                {% if i >= page_obj.number|add:-4 and i <= page_obj.number|add:4  %}
+                                  <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                                </li>
+                              {% endif %}
+                          {% endfor %}
+                          {% if page_obj.has_next %}
+                            <li class="page-item">
+                              <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                              </a>
+                            </li>
+                          {% endif %}
+                        </ul>
                 </div>
             </div>
         </section>

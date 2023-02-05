@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aiai</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body class="gray">
+    <div class="pc">
+        <div class="navbar__cart">
+            <div class="container__mine">
+                <div class="navbar__cart__logo">
+                    <a href="{% url 'main' %}"><img src="{% static 'svg/logo.svg' %}" class="cart__logo"></a>
+                    <span class="navbar__cart__title">Оформление заказа</span>
+                </div>
+            </div>
+        </div>
+        <div class="cart">
+            <div class="container__mine">
+                <div class="d-f">
+                    <div class="block__info">
+                        <div class="approach__for__pay"><form>После заказа мы с вами свяжемся.</form></div>
+                        <div class="info__product">
+                            <h3 class="info__product__title">Состав заказа</h3>
+                            <form method="POST">    
+                                {% csrf_token %}
+                                <input type="text" class="form__input" name="productChoosed" value="{{product.title}}" readonly>
+                                <div class="information">
+                                    <input type="text" class="address__input" placeholder="Введите ваш город" name="cityAddress">
+                                    <input type="text" class="address__input" placeholder="Введите ваше имя" name="name">
+                                    <div class="colorsItem">Цвета: {% for v in product.colors.all %}{{v.name}}, {% endfor %}</div>
+                                    <div class="mb-3">Если хотите больше расцветок пишите как внизу: </div>
+                                    <input type="text" class="address__input" placeholder="К примеру: зеленый - 30штук" name="colorsValue">
+                                <div class="phone__code__address">
+                                    <select class="country__prefix" name="phoneCode" id="phone__code">
+                                        {% for k in codep %}
+                                            <option>{{k.code}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <input type="tel" class="phone__number" placeholder="Ваш номер телефона WhatsApp" id="phone_number" name="phoneNumber">
+                                </div>
+                                </div>
+                                <div class="paymentMethods">
+                                    <h3 class="paymentMethods__title">Выберите способ оплаты.</h3>
+                                    <div class="paymentMethods__item">
+                                        <input name="cashMethod" type="checkbox"><label>Наличными</label>
+                                    </div>
+                                    <div class="paymentMethods__item">
+                                        <input name="bankCartMethod" type="checkbox"><label>Банковской картой</label>
+                                    </div>
+                                    <div class="paymentMethods__item">
+                                        <input name="mbank" type="checkbox"><label>Мбанк</label>
+                                    </div>
+                                </div>
+                                <button class="uni-btn">Заказать</button>
+                            
+    
+                            {% comment %} <form method="POST">
+                                {% csrf_token %}
+                                <input type="text" name="tovar" value="{{product.title}}" disabled>
+                                <select class="country__prefix" name="code" id="phone__code">
+                                    {% for k in codep %}
+                                        <option>{{k.code}}</option>
+                                    {% endfor %}
+                                </select>
+                                <input type="text" class="phone__number" placeholder="phone_order" name="phone_order">
+                                {% for k in product.colors.all %}
+                                    <input type="checkbox" id="dessert-{{forloop.counter}}" name="colors">
+                                    <label for="dessert-{{forloop.counter}}">
+                                        <img src="{{k.picture.url}}" class="info__product__img">
+                                    </label> 
+                                {% endfor %}       
+                                <br><br>
+                                <button>Добавить</button>
+                            </form> {% endcomment %}
+    
+                        </div>
+                    </div>
+                    <div class="info__product__final">
+                        <img src="{{product.picture.url}}" class="info__product__final__img">
+                        <span class="infoPrice">Цена: {{product.price}} сом / 1 шт.</span>
+                        <h3 class="info__product__final__title"> </h3>
+                        <span class="info__product__final__price">
+                            <input type="text" name="total" class="resultPrice" value="{{ product.price|add:product.price|add:product.price|add:product.price }} сом / 4 шт." readonly>
+                        </span>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mobile">
+        <div class="navbar__cart">
+            <div class="container__mine">
+                <div class="navbar__cart__logo">
+                    <a href="{% url 'main' %}"><img src="{% static 'svg/logo.svg' %}" class="cart__logo"></a>
+                    <span class="navbar__cart__title">Оформление заказа</span>
+                </div>
+            </div>
+        </div>
+        <div class="cart">
+            <div class="block__info">
+                <div class="connect"><form><h4>После заказа мы с вами свяжемся.</h4></form></div>
+                <div class="connect__form">
+                    <form method="POST">
+                        {% csrf_token %}
+                            <input type="text" class="form__input" name="productChoosed" value="{{product.title}}" readonly>
+                                    <div class="information">
+                                        <input type="text" class="address__input" placeholder="Введите ваш город" name="cityAddress">
+                                        <input type="text" class="address__input" placeholder="Введите ваше имя" name="name">
+                                        <div class="colorsItem">Цвета: {% for v in product.colors.all %}{{v.name}}, {% endfor %}</div>
+                                        <div class="mb-3">Если хотите больше расцветок пишите как внизу: </div>
+                                        <input type="text" class="address__input" placeholder="К примеру: зеленый - 30штук" name="colorsValue">
+                                    <div class="phone__code__address">
+                                        <select class="country__prefix" name="phoneCode" id="phone__code">
+                                            {% for k in codep %}
+                                                <option>{{k.code}}</option>
+                                            {% endfor %}
+                                        </select>
+                                        <input type="tel" class="phone__number" placeholder="Ваш номер телефона WhatsApp" id="phone_number" name="phoneNumber">
+                                    </div>
+                                    </div>
+                                    <div class="paymentMethods">
+                                        <h3 class="paymentMethods__title">Выберите способ оплаты.</h3>
+                                        <div class="paymentMethods__item">
+                                            <input name="cashMethod" type="checkbox"><label>Наличными</label>
+                                        </div>
+                                        <div class="paymentMethods__item">
+                                            <input name="bankCartMethod" type="checkbox"><label>Банковской картой</label>
+                                        </div>
+                                        <div class="paymentMethods__item">
+                                            <input name="mbank" type="checkbox"><label>Мбанк</label>
+                                        </div>
+                                    </div>
+                                    <button class="uni-btn">Заказать</button>
+                                
+        
+                                {% comment %} <form method="POST">
+                                    {% csrf_token %}
+                                    <input type="text" name="tovar" value="{{product.title}}" disabled>
+                                    <select class="country__prefix" name="code" id="phone__code">
+                                        {% for k in codep %}
+                                            <option>{{k.code}}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <input type="text" class="phone__number" placeholder="phone_order" name="phone_order">
+                                    {% for k in product.colors.all %}
+                                        <input type="checkbox" id="dessert-{{forloop.counter}}" name="colors">
+                                        <label for="dessert-{{forloop.counter}}">
+                                            <img src="{{k.picture.url}}" class="info__product__img">
+                                        </label> 
+                                    {% endfor %}       
+                                    <br><br>
+                                    <button>Добавить</button>
+                                </form> {% endcomment %}
+        
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+    <script src="{% static 'js/cart.js' %}"></script>
+
+    <script>
+        $('form').eq(0).on("change", function(e){ 
+            $('input[name^=field]').each(function()
+            { 
+              if(e.target != this)
+                this.checked = false; 
+            });
+        })
+        
+        $('form').eq(0).on('submit', function() {
+             return $('input[name^=field]:checked:enabled').length == 1;
+        });
+
+    
+    </script>
+
+    <!-- end Scripts -->
+
+</body>
+</html>
